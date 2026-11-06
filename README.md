@@ -34,5 +34,5 @@ Optional `GAEA_DIR` setzen, falls Gaea nicht unter `%LOCALAPPDATA%\Programs\Gaea
 
 - **Projekt in Gaea vorher schließen** (oder danach neu öffnen). Gaea lädt Dateien nicht neu, und Speichern in Gaea überschreibt die Änderungen.
 - Vor jeder Änderung wird `<datei>.terrain.bak` angelegt (nur die letzte Version).
-- Neue Node-Typen: einmal in Gaea anlegen, speichern, dann `gaea_learn_node_types` auf die Datei. Bekannt sind bisher: Adjust, Erosion, Mountain, Rivers, Slope (`node_templates.json`).
+- Neue Node-Typen: einmal in Gaea anlegen, speichern, dann `gaea_learn_node_types` auf die Datei. Bekannt sind bisher: Adjust, Combine, Erosion, Height, Island, Mountain, RGBMerge, Rivers, Sea, Shape, Slope (`node_templates.json`).
 - Parameternamen sind Gaeas interne Namen. Unbekannte Namen werden geschrieben, aber von Gaea ignoriert.
