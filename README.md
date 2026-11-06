@@ -36,3 +36,5 @@ Optional `GAEA_DIR` setzen, falls Gaea nicht unter `%LOCALAPPDATA%\Programs\Gaea
 - Vor jeder Änderung wird `<datei>.terrain.bak` angelegt (nur die letzte Version).
 - Neue Node-Typen: einmal in Gaea anlegen, speichern, dann `gaea_learn_node_types` auf die Datei. Bekannt sind bisher: Adjust, Combine, Erosion, Height, Island, Mountain, RGBMerge, Rivers, Sea, Shape, Slope (`node_templates.json`).
 - Parameternamen sind Gaeas interne Namen. Unbekannte Namen werden geschrieben, aber von Gaea ignoriert.
+- Export markieren: `gaea_set_params` mit `{"SaveDefinition": {"Node": <id>, "Filename": "Name", "Format": "PNG16", "IsEnabled": true, "DisabledInProfiles": {"$values": []}}}`. `Format` muss ein Gaea-Enum sein (z. B. `PNG8`, `PNG16`, `PNG64`, `TIFF8`, `TIFF16`, `TIFF32`, `EXR`) - `PNG` allein macht die Datei unlesbar ("File is corrupt").
+- Fehler beim Öffnen: Gaea schreibt sie gzip+base64 ins Log (`Data/Logs`), erste 4 Bytes überspringen und entpacken.
