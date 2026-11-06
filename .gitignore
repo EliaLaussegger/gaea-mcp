@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.terrain
+*.terrain.bak
+*.terrain.tmp
+.venv/
