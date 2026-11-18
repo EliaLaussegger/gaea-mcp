@@ -183,7 +183,12 @@ def gaea_build(file: str, build_path: str, resolution: int = 1024,
     except subprocess.TimeoutExpired:
         p.kill()
         code, status = None, "timeout"
-    logs = sorted((GAEA_DIR / "Data" / "Logs").glob("*SWARM*.txt"), key=os.path.getmtime)
+    # Gaea 2.3 writes Swarm logs to %APPDATA%\QuadSpinner\Gaea\2.0\Logs;
+    # older installs used <GAEA_DIR>\Data\Logs. Only take logs from this run.
+    log_dirs = [GAEA_DIR / "Data" / "Logs",
+                Path(os.environ.get("APPDATA", "")) / "QuadSpinner" / "Gaea" / "2.0" / "Logs"]
+    logs = sorted((f for d in log_dirs if d.is_dir() for f in d.glob("*SWARM*.txt")
+                   if os.path.getmtime(f) >= t0 - 1), key=os.path.getmtime)
     tail = logs[-1].read_text(encoding="utf-8", errors="replace").splitlines()[-15:] if logs else []
     files = [str(f) for f in Path(build_path).rglob("*") if f.is_file()]
     return {"status": status, "exit_code": code, "seconds": round(time.time() - t0),
